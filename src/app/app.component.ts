@@ -17,7 +17,7 @@ export class AppComponent {
   // 43.56082121817718,1.4716893430919842;
   // 43.56131875712535 et longi: 1.4678285285274928
   latitude = 43.56131875712535;
-  longitude =  1.4678285285274928;
+  longitude = 1.4678285285274928;
   lati1 = 43.56;
   longi1 = 1.47;
   lati2 = 43.565;
@@ -40,11 +40,11 @@ export class AppComponent {
 
   rotate() {
     var view = this.map.getView();
-   // view.animate({
-   //   rotation: view.getRotation() - Math.PI / 6
-   // });
-   view.setRotation(-Math.PI / 3.3);
-   view.setZoom(this.zoom);
+    // view.animate({
+    //   rotation: view.getRotation() - Math.PI / 6
+    // });
+    view.setRotation(-Math.PI / 3.3);
+    view.setZoom(this.zoom);
   }
 
   ngOnInit() {
@@ -81,15 +81,15 @@ export class AppComponent {
       console.log(args.coordinate);
       var lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
       console.log(lonlat);
-      
+
       // var lon = lonlat[0];
       // var lat = lonlat[1];
       //alert(`lat: ${lonlat[1]} et long: ${lonlat[0]}`);
-      eval("this.longi1 = lonlat[0];"); 
+      eval("this.longi1 = lonlat[0];");
       eval("this.lati1 = lonlat[1];");
 
       this.setCenter2();
       alert(`lati: ${this.lati1} et longi: ${this.longi1}`);
-    }); 
+    });
   }
 }
