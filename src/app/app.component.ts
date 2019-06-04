@@ -89,6 +89,7 @@ export class AppComponent {
       eval("this.lati1 = lonlat[1];");
 
       this.setCenter2();
+      this.rotate();
       alert(`lati: ${this.lati1} et longi: ${this.longi1}`);
     });
   }
