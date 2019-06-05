@@ -12,39 +12,43 @@ declare var ol: any;
 // lancer avec ng serve --open
 // puis aller sur http://localhost:4200/
 export class AppComponent {
-  // key ORS 5b3ce3597851110001cf62485c1281f3bfe848569bcdc02b0f251d0b
-  // 43.56126972376964,1.4633593428879976;
-  // 43.56082121817718,1.4716893430919842;
-  // 43.56131875712535 et longi: 1.4678285285274928
-  latitude = 43.56131875712535;
-  longitude = 1.4678285285274928;
-  lati1 = 43.56;
-  longi1 = 1.47;
-  lati2 = 43.565;
-  longi2 = 1.475;
+  latitude = 43.56;
+  longitude = 1.47;
+  latiStart = 0.0;
+  longiStart = 0.0;
+  latiEnd = 0.0;
+  longiEnd = 0.0;
+  start = "";
+  end = "";
   zoom = 16.75;
   title = 'Essai OSM';
   map: any;
 
-  setCenter() {
+  center() {
     var view = this.map.getView();
     view.setCenter(ol.proj.fromLonLat([this.longitude, this.latitude]));
     view.setZoom(this.zoom);
-  }
 
-  setCenter2() {
     var view = this.map.getView();
-    view.setCenter(ol.proj.fromLonLat([this.longi1, this.lati1]));
-    view.setZoom(this.zoom);
-  }
-
-  rotate() {
-    var view = this.map.getView();
-    // view.animate({
-    //   rotation: view.getRotation() - Math.PI / 6
-    // });
     view.setRotation(-Math.PI / 3.3);
     view.setZoom(this.zoom);
+  }
+
+  getRoute(start, end) {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf6248e17e16eae3fd4c47a7f3738528afba68&start=' + start + '&end=' + end);
+    request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+
+    request.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    };
+    
+    request.send();
   }
 
   ngOnInit() {
@@ -82,15 +86,15 @@ export class AppComponent {
       var lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
       console.log(lonlat);
 
-      // var lon = lonlat[0];
-      // var lat = lonlat[1];
+      this.longiStart = lonlat[0];
+      this.latiStart = lonlat[1];
+      this.start = latiStart + ',' + longiStart;
       //alert(`lat: ${lonlat[1]} et long: ${lonlat[0]}`);
-      eval("this.longi1 = lonlat[0];");
-      eval("this.lati1 = lonlat[1];");
+      //eval("this.longiStart = lonlat[0];");
+      //eval("this.latiEnd = lonlat[1];");
 
-      this.setCenter2();
-      this.rotate();
-      alert(`lati: ${this.lati1} et longi: ${this.longi1}`);
+      this.center();
+      alert(`lati: ${this.latiStart} et longi: ${this.longiStart}`);
     });
   }
 }

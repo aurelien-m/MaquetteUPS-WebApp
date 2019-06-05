@@ -5,23 +5,29 @@
   </h3>
 </div>
 
-<div>
+<div style="text-align:center">
   <div>
-      <label for="latitude">Latitude:</label>
-      <input id="latitude" type="number" [(ngModel)]="latitude" placeholder="Latitude">
-      <label for="longitude">Longitude:</label>
-      <input id="longitude" type="number" [(ngModel)]="longitude" placeholder="Longitude">
-      <input id="lati" type="number" [(ngModel)]="lati" placeholder="Lati">
-      <input id="longi" type="number" [(ngModel)]="longi" placeholder="Longi">
+    <label>Latitude : </label>
+    <input id="latitude" type="number" [(ngModel)]="latitude" placeholder="Latitude">
+    <br/>
+    <label>Longitude : </label>
+    <input id="longitude" type="number" [(ngModel)]="longitude" placeholder="Longitude">
+    <br/>
+    <label>Départ : </label>
+    <input id="start" type="text" [(ngModel)]="start" placeholder="Coordonnées">
+    <br/>
+    <label>Arrivé : </label>
+    <input id="end" type="text" [(ngModel)]="end" placeholder="Coordonnées">
   </div>
-  <button (click)="setCenter()">Go</button>
-  <button (click)="setCenter2()">Go2</button>
-  <button (click)="rotate()">rotate</button>
+  <!-- <button (click)="setCenter()">Go</button> -->
+  <button (click)="center()">Centrer</button>
+  <!-- <button (click)="rotate()">rotate</button> -->
+  <button (click)="getRoute($('#lati').val(), $('#longi').val())">Calculer Chemin</button>
 </div>
 
 <!-- <div id="mouse-position"></div> -->
 
-<form class="form-inline">
+<!-- <form class="form-inline">
   <label>Geometry type &nbsp;</label>
   <select id="type">
     <option value="Point">Point</option>
@@ -29,7 +35,7 @@
     <option value="Polygon">Polygon</option>
     <option value="Circle">Circle</option>
   </select>
-</form>
+</form> -->
 
 <script>
   import Map from 'ol/Map.js';
