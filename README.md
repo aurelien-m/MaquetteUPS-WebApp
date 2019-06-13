@@ -2,13 +2,15 @@
 
 ## Setup
 
-Installer Angular (voir commande ci-dessous) et [NodeJS](https://nodejs.org/en/download/).
+Télécharger [NodeJS](https://nodejs.org/en/download/).
+
+Installer Angular.
 
 ```
 npm install -g @angular/cli
 ```
 
-Lancer la commande suivante pour installer les packages nécessaires à la racine.
+Lancer la commande suivante pour installer les packages nécessaires à la racine du projet.
 
 ```
 npm install
