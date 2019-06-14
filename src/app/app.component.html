@@ -45,6 +45,29 @@
   import {OSM, Vector as VectorSource} from 'ol/source.js';
   import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style.js';
 
+  /*app.controller("PathController", [ '$scope', function($scope) {
+    angular.extend($scope, {
+        center: {
+            lat: 48,
+            lng: 4,
+            zoom: 4
+        },
+        paths: {
+            p1: {
+                color: '#008000',
+                weight: 8,
+                latlngs: [
+                    { lat: 43.56267, lng: 1.46562 },
+                    { lat: 43.55677, lng: 1.46815 }
+                ],
+            }
+        },
+        defaults: {
+            scrollWheelZoom: false
+        }
+    });
+  }]);*/
+
   var raster = new TileLayer({
     source: new OSM()
   });
@@ -69,14 +92,14 @@
     })
   });
   
-/*var map = new Map({
+  /*var map = new Map({
     layers: [raster, vector],
     target: 'map',
     view: new View({
       center: [-11000000, 4600000],
       zoom: 4
     })
-  }); */
+  });*/
 
   var modify = new Modify({source: source});
   map.addInteraction(modify);

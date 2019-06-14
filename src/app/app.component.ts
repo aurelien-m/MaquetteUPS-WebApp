@@ -88,7 +88,7 @@ export class AppComponent {
 
       this.longiStart = lonlat[0];
       this.latiStart = lonlat[1];
-      this.start = latiStart + ',' + longiStart;
+      this.start = this.latiStart + ',' + this.longiStart;
       //alert(`lat: ${lonlat[1]} et long: ${lonlat[0]}`);
       //eval("this.longiStart = lonlat[0];");
       //eval("this.latiEnd = lonlat[1];");
